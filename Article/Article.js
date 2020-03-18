@@ -112,3 +112,78 @@ const data = [
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+// Create a new article content
+var newArticle = {
+  title: 'Apple accidentally listed four new iPad Pro models', 
+  date: 'Mar 17th, 2020', 
+  firstParagraph: "An iPad Pro refresh could be imminent if what appears to be an accidental leak on Apple's part is any indication. Over on its Chinese website, the company temporarily listed four new iPad Pro models in a support document.", 
+  secondParagraph: "Notably, two of the models, A2228 and A2229, match recent filings the company made with the Eurasian Economic Commission. In the past, new database listings with the ECC have typically foreshadowed new releases from Apple.",
+  thirdParagraph: 'The question then becomes whether Apple will announce the new iPad Pro anytime soon. In November, Bloomberg said the tablet could arrive "as early as" the first half of 2020. Of course, that was before the World Health Organization declared the coronavirus outbreak a pandemic.'
+}
+
+function insertNewArticle(newArticle) {
+  data.push(newArticle);
+}
+
+insertNewArticle(newArticle);
+
+// Create an article to the DOM
+const createArticle = (data) => {
+
+  // Create elements
+  const article = document.createElement('div');
+  const title = document.createElement('h2');
+  const date = document.createElement('p');
+  const firstParagraph = document.createElement('p');
+  const secondParagraph = document.createElement('p');
+  const thirdParagraph = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  // Create structure
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(firstParagraph);
+  article.appendChild(secondParagraph);
+  article.appendChild(thirdParagraph);
+  article.appendChild(expandButton);
+
+  // Add styles
+  article.classList.add('article');
+  date.classList.add('date');
+  expandButton.classList.add('expandButton');
+  expandButton.addEventListener('click', (event) => {
+    article.classList.toggle('article-open');
+  })
+
+  // Add content
+  title.textContent = data['title'];
+  date.textContent = data['date'];
+  firstParagraph.textContent = data['firstParagraph'];
+  secondParagraph.textContent = data['secondParagraph'];
+  thirdParagraph.textContent = data['thirdParagraph'];
+  expandButton.textContent = 'Expand';  
+
+  return article;
+}
+
+// Send artiles from data to the DOM and display them
+data.forEach(element => {
+  const articles = document.querySelector('.articles');
+  const articleComponent = createArticle(element);
+  articles.appendChild(articleComponent);
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
