@@ -53,6 +53,9 @@ const createMenu = (menuItems) => {
 
   // Add styles
   menu.classList.add('menu');
+  button.addEventListener('click', (event) => {
+    menu.classList.toggle('menu--open');
+  })
 
   // Add content
   for (let k = 0; k < menuItems.length; k++) {
@@ -62,13 +65,8 @@ const createMenu = (menuItems) => {
   return menu;
 }
 
+const header = document.querySelector('.header');
 const button = document.querySelector('.menu-button');
-
-button.addEventListener('click', (event) => {
-  menu.classList.toggle('menu--open');
-  event.target.appendChild(menu);
-})
-
-const menu = createMenu(menuItems);
+header.appendChild(createMenu(menuItems));
 
 
